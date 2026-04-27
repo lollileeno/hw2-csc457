@@ -48,17 +48,62 @@ function registerCVQuoteEvents() {
     }
 
     quoteElement.addEventListener('mouseover', function () {
-        quoteElement.style.backgroundColor = '#f4f4f9';
+        var darkMode = document.body.classList.contains('dark-mode');
+        quoteElement.style.backgroundColor = darkMode ? '#1e293b' : '#f4f4f9';
+        quoteElement.style.color = darkMode ? '#f8fafc' : '';
         quoteElement.style.fontStyle = 'italic';
     });
 
     quoteElement.addEventListener('mouseout', function () {
         quoteElement.style.backgroundColor = '';
+        quoteElement.style.color = '';
         quoteElement.style.fontStyle = '';
     });
+}
+
+function setDarkMode(enabled) {
+    var bodyElement = document.body;
+    var button = document.getElementById('dark-mode-button');
+    if (!bodyElement || !button) {
+        return;
+    }
+
+    if (enabled) {
+        bodyElement.classList.add('dark-mode');
+        button.textContent = 'Light Mode';
+        localStorage.setItem('darkMode', 'true');
+    } else {
+        bodyElement.classList.remove('dark-mode');
+        button.textContent = 'Dark Mode';
+        localStorage.setItem('darkMode', 'false');
+    }
+}
+
+function toggleDarkMode() {
+    var bodyElement = document.body;
+    if (!bodyElement) {
+        return;
+    }
+
+    var enabled = bodyElement.classList.contains('dark-mode');
+    setDarkMode(!enabled);
+}
+
+function registerDarkModeToggle() {
+    var button = document.getElementById('dark-mode-button');
+    if (!button) {
+        return;
+    }
+
+    button.addEventListener('click', toggleDarkMode);
+    var storedValue = localStorage.getItem('darkMode');
+    if (storedValue === 'true') {
+        setDarkMode(true);
+    }
 }
 
 window.onload = function () {
     addPageLoadDate();
     registerCVQuoteEvents();
+    registerDarkModeToggle();
 };

@@ -26,19 +26,18 @@
 <section class="highlight-box">
     <h2>Send Me a Message</h2>
 
-    <label for="name">Name:</label><br>
-    <input type="text" id="name" name="name" required><br><br>
+    <form action="thankyou.html" method="get" onsubmit="return validateContactForm()">
+        <label for="name">Name:</label><br>
+        <input type="text" id="name" name="name" required><br><br>
 
-    <label for="email">Email:</label><br>
-    <input type="email" id="email" name="email" required><br><br>
+        <label for="email">Email:</label><br>
+        <input type="email" id="email" name="email" required><br><br>
 
-    <label for="message">Message:</label><br>
-    <textarea id="message" name="message" rows="5" cols="40" required></textarea><br><br>
+        <label for="message">Message:</label><br>
+        <textarea id="message" name="message" rows="5" cols="40" required></textarea><br><br>
 
-    <a href="thankyou.html">
-        <input type="button" value="Send">
-    </a>
-</section>
+        <input type="submit" value="Send">
+    </form>
 
     <p>
         Or email me directly:
@@ -52,6 +51,6 @@
 <footer>
     <p>&copy; 2026 Leena Alonayq</p>
 </footer>
-
+<script src="scripts.js"></script>
 </body>
 </html>
